@@ -15,18 +15,23 @@ Personalized interview preparation assistant that generates targeted questions b
 
 ## Quick Start
 
-When the user wants to practice interviews:
+当用户想要准备面试时，识别以下任意一种输入方式：
 
-1. Identify input source:
-   - Resume file (PDF, Word, or MD)
-   - Job position/role name
-   - Existing skills/experience description
+### 自然对话方式（推荐）
 
-2. Read and analyze the input
+用户可以用自然的对话方式发起请求：
 
-3. Generate 10 targeted interview questions
+- **"你好考官，这是我的简历：path/to/resume.pdf"**
+- **"你好考官，我是3年经验的前端工程师，帮我准备面试"**
+- **"我想面试 AI 算法工程师，生成10道题"**
+- **"准备一下 Java 后端面试题"**
 
-4. Output formatted markdown document with answer spaces and reference answers
+### 处理流程
+
+1. 识别用户意图和输入信息（简历文件或职位描述）
+2. 读取并分析简历内容（如果提供）
+3. **生成10道**针对性的面试题
+4. 输出格式化的 markdown 文档（含答题空格和参考答案）
 
 ## Input Handling
 
