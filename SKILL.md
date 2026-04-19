@@ -4,10 +4,12 @@ description: >-
   AI-powered interview preparation assistant with three difficulty levels (junior/mid/senior),
   flexible question count (5/10/15/20), five question types (knowledge, coding, system design,
   case study, behavioral), and interview history tracking with progress analysis and capability
-  radar charts. Supports both document generation mode and interactive mock interview mode.
+  radar charts. Includes 7-day sprint plans, job readiness scoring, and answer rewriting for
+  higher interview performance. Supports both document generation mode and interactive mock
+  interview mode.
   Use when preparing for job interviews, practicing interview skills, conducting mock interviews,
   tracking progress, or when the user mentions "面试", "interview practice", "模拟面试", "面试题",
-  "简历分析", "历史记录", "进步", or asks to generate interview questions.
+  "简历分析", "历史记录", "进步", "冲刺计划", "就绪度", "润色答案", or asks to generate interview questions.
 ---
 
 # AI Interview Coach
@@ -1002,6 +1004,137 @@ Since this is a skill file without persistent storage:
 User: "查看历史"
 Action: Read history file → Parse → Display summary → Offer radar chart
 ```
+
+## Offer-Oriented Growth Features (提升 Offer 转化)
+
+These three features should be proactively offered after any session summary.
+
+### Feature 1: 7-Day Sprint Plan (7天冲刺计划)
+
+**User pain point:** "我知道要练，但不知道每天练什么。"
+
+**Triggers:**
+- "7天冲刺"
+- "一周计划"
+- "面试计划"
+- "临近面试怎么练"
+
+**Behavior:**
+1. Ask for role, years of experience, and target timeline.
+2. Generate a Day1-Day7 plan with daily objective, duration, question mix, and success criteria.
+3. Keep each day <= 45 minutes to reduce dropout risk.
+4. At end of each day: provide next-day adjustment (difficulty up/down).
+
+**Output template:**
+```markdown
+# 7天面试冲刺计划 - [Role]
+
+> 当前水平: [junior/mid/senior]
+> 目标: [Target role/company]
+> 每日投入: [X] 分钟
+
+## Day 1 - 基线评估
+- 目标: 建立能力基线
+- 任务: [5题混合 + 1次行为题]
+- 验收标准: 完成率 >= 80%，输出薄弱项Top2
+
+## Day 2 - [Theme]
+- 目标:
+- 任务:
+- 验收标准:
+
+[...Day3-Day7]
+
+## 达标条件
+- 综合评分 >= [X]
+- 薄弱项提升 >= [Y] 分
+```
+
+### Feature 2: Job Readiness Score (岗位就绪度评分)
+
+**User pain point:** "我到底能不能去面试？"
+
+**Triggers:**
+- "就绪度"
+- "通过率"
+- "我能面了吗"
+- "现在水平怎么样"
+
+**Scoring rubric (100):**
+- Technical knowledge: 25
+- Coding ability: 25
+- System design: 20
+- Behavioral interview: 15
+- Communication structure: 15
+
+**Output template:**
+```markdown
+# 岗位就绪度评估 - [Role]
+
+**Job Readiness Score**: [X]/100
+**当前等级**: [可投递 / 建议补强后投递 / 暂不建议投递]
+
+## 维度评分
+- 技术知识: [X]/25
+- 编程能力: [X]/25
+- 系统设计: [X]/20
+- 行为面试: [X]/15
+- 表达结构化: [X]/15
+
+## 风险项 (Top 2)
+1. [Gap 1]
+2. [Gap 2]
+
+## 两周提升路线
+- Week 1: [Action plan]
+- Week 2: [Action plan]
+```
+
+### Feature 3: Answer Rewriter (高分话术改写器)
+
+**User pain point:** "我懂，但我不会表达。"
+
+**Triggers:**
+- "润色答案"
+- "改成高分回答"
+- "优化表达"
+- "口语化一点"
+
+**Behavior:**
+1. Evaluate user's raw answer and identify 2-3 concrete gaps.
+2. Rewrite into two versions:
+   - 30-second concise version
+   - 2-minute interview version
+3. Provide 2 likely follow-up questions and best responses.
+4. For behavioral questions, enforce STAR structure.
+
+**Output template:**
+```markdown
+# 回答优化结果
+
+## 你的原答案问题
+1. [Issue 1]
+2. [Issue 2]
+
+## 高分版本（30秒）
+[Concise, structured answer]
+
+## 高分版本（2分钟）
+[Deeper answer with context, trade-offs, and outcome]
+
+## 可能追问与应对
+1. Q: [Follow-up]
+   A: [Best response]
+2. Q: [Follow-up]
+   A: [Best response]
+```
+
+### Proactive Recommendation Rule
+
+After each summary, proactively offer one next action:
+- If score < 65: offer "7天冲刺计划"
+- If 65 <= score < 80: offer "就绪度评分 + 两周提升路线"
+- If score >= 80: offer "高级模拟面试 + 答案精修"
 
 ## Tips for Best Results
 
